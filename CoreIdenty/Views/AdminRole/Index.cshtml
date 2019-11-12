@@ -1,0 +1,51 @@
+﻿@model IEnumerable< Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="bg-primary text-white p-1 table-sm m-1">User List</div>
+
+<table class="table table-bordered table-striped m-1 p-1">
+    <tr>
+        <th> Role Id </th>
+        <th> Role Name</th>
+        <th> Users</th>
+        <th> </th>
+
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="4" class="text-center">No Role</td>
+
+
+        </tr>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td></td>
+                <td>
+                    <form asp-action="Delete" method="post">
+
+                        <button asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</button>
+                        <a asp-action="Uptade" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+
+
+                    </form>
+
+
+
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Create Users</a>
